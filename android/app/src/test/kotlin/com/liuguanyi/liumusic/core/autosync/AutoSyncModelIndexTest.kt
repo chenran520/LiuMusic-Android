@@ -13,7 +13,7 @@ class AutoSyncModelIndexTest {
         {
           "pack_version": "0.1.0-beta.4",
           "release_tag": "android-models-v0.1.0-beta.4",
-          "release_url": "https://github.com/liuguanyi/LiuMusic-AutoSync/releases/tag/android-models-v0.1.0-beta.4",
+          "release_url": "https://github.com/ranchen749-oss/LiuMusic-AutoSync/releases/tag/android-models-v0.1.0-beta.4",
           "min_backend_protocol": 1,
           "languages": {
             "en": {
@@ -142,6 +142,6 @@ class AutoSyncModelIndexTest {
     }
 
     private companion object {
-        const val PREFIX = "https://github.com/liuguanyi/LiuMusic-AutoSync/releases/download/android-models-v0.1.0-beta.4/"
+        const val PREFIX = "https://github.com/ranchen749-oss/LiuMusic-AutoSync/releases/download/android-models-v0.1.0-beta.4/"
     }
 }

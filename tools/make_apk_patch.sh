@@ -40,7 +40,7 @@ entry = {
     "fromApkSha256": sha(old),
     "toVersion": to_version or "TODO",
     "apkSha256": sha(new),
-    "patchUrl": "https://github.com/liuguanyi/LiuMusic-Android/releases/download/<tag>/" + pathlib.Path(out_path).name,
+    "patchUrl": "https://github.com/ranchen749-oss/LiuMusic-Android/releases/download/<tag>/" + pathlib.Path(out_path).name,
     "patchSha256": sha(patch),
     "patchBytes": len(patch),
 }

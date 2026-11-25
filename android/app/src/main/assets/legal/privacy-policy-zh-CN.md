@@ -82,4 +82,4 @@ LiuMusic 使用 Android 应用沙箱保存私有数据，并尽量减少凭据�
 
 ## 十、联系我们
 
-如对隐私处理、数据删除或本政策有疑问，请通过 LiuMusic 项目主页的 GitHub Issues 联系维护者：https://github.com/liuguanyi/LiuMusic-Android/issues
+如对隐私处理、数据删除或本政策有疑问，请通过 LiuMusic 项目主页的 GitHub Issues 联系维护者：https://github.com/ranchen749-oss/LiuMusic-Android/issues

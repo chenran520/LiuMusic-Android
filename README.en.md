@@ -2,9 +2,9 @@
 
 [中文](README.md)
 
-[![Downloads](https://img.shields.io/github/downloads/liuguanyi/LiuMusic-Android/total?label=downloads&color=2ea44f)](https://github.com/liuguanyi/LiuMusic-Android/releases)
-[![Release](https://img.shields.io/github/v/release/liuguanyi/LiuMusic-Android?display_name=release&label=release&color=ff2d55)](https://github.com/liuguanyi/LiuMusic-Android/releases/latest)
-[![Last Commit](https://img.shields.io/github/last-commit/liuguanyi/LiuMusic-Android/main?label=last%20commit&color=007aff)](https://github.com/liuguanyi/LiuMusic-Android/commits/main)
+[![Downloads](https://img.shields.io/github/downloads/ranchen749-oss/LiuMusic-Android/total?label=downloads&color=2ea44f)](https://github.com/ranchen749-oss/LiuMusic-Android/releases)
+[![Release](https://img.shields.io/github/v/release/ranchen749-oss/LiuMusic-Android?display_name=release&label=release&color=ff2d55)](https://github.com/ranchen749-oss/LiuMusic-Android/releases/latest)
+[![Last Commit](https://img.shields.io/github/last-commit/ranchen749-oss/LiuMusic-Android/main?label=last%20commit&color=007aff)](https://github.com/ranchen749-oss/LiuMusic-Android/commits/main)
 [![License](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
 
 <p align="center">
@@ -22,7 +22,7 @@
 
 ## Current version: 0.6.5
 
-Current Android version: `0.6.5` (`versionCode 23`). See [CHANGELOG.md](CHANGELOG.md) for version history. Release downloads will be published on [GitHub Releases](https://github.com/liuguanyi/LiuMusic-Android/releases).
+Current Android version: `0.6.5` (`versionCode 23`). See [CHANGELOG.md](CHANGELOG.md) for version history. Release downloads will be published on [GitHub Releases](https://github.com/ranchen749-oss/LiuMusic-Android/releases).
 
 > [!WARNING]
 > Third-party music sources are imported by the user and depend on external services. Sources used for testing before release have failed because of dead endpoints, rate limits, DNS or certificate errors, or unplayable URLs. LiuMusic cannot guarantee that any third-party source works. If you hit a problem, open Settings → About, scroll to the bottom, export all LiuMusic logs, and send them to `2676911574@qq.com`. Logs may contain account state, song metadata, request URLs, or other private data. Review them before sending.
@@ -180,7 +180,7 @@ Some RuntimeShader and Backdrop effects need a newer Android version. Older vers
 1. Clone:
 
    ```bash
-   git clone https://github.com/liuguanyi/LiuMusic-Android.git
+   git clone https://github.com/ranchen749-oss/LiuMusic-Android.git
    cd LiuMusic-Android
    ```
 

@@ -84,6 +84,6 @@ class LrcLibLyricsClient(
 
     private companion object {
         val LRC_LINE = Regex("\\[(\\d{1,2}):(\\d{2})[.:](\\d{2,3})](.*)")
-        const val USER_AGENT = "LiuMusic (https://github.com/liuguanyi/LiuMusic-Android)"
+        const val USER_AGENT = "LiuMusic (https://github.com/ranchen749-oss/LiuMusic-Android)"
     }
 }

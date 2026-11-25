@@ -139,9 +139,9 @@ class LiuMusicGitHubRouting(
 
     companion object {
         const val UpdateManifestUrl =
-            "https://raw.githubusercontent.com/liuguanyi/LiuMusic-Remote-Config-Public/main/v1/update.json"
+            "https://raw.githubusercontent.com/ranchen749-oss/LiuMusic-Remote-Config-Public/main/v1/update.json"
         const val RemoteConfigUrl =
-            "https://raw.githubusercontent.com/liuguanyi/LiuMusic-Remote-Config-Public/main/v1/latest.json"
+            "https://raw.githubusercontent.com/ranchen749-oss/LiuMusic-Remote-Config-Public/main/v1/latest.json"
 
         private const val PreferencesName = "liumusic_github_routing"
         private const val LegacyPreferencesName = "liumusic_app_settings"

@@ -2,9 +2,9 @@
 
 [English](README.en.md)
 
-[![Downloads](https://img.shields.io/github/downloads/liuguanyi/LiuMusic-Android/total?label=downloads&color=2ea44f)](https://github.com/liuguanyi/LiuMusic-Android/releases)
-[![Release](https://img.shields.io/github/v/release/liuguanyi/LiuMusic-Android?display_name=release&label=release&color=ff2d55)](https://github.com/liuguanyi/LiuMusic-Android/releases/latest)
-[![Last Commit](https://img.shields.io/github/last-commit/liuguanyi/LiuMusic-Android/main?label=last%20commit&color=007aff)](https://github.com/liuguanyi/LiuMusic-Android/commits/main)
+[![Downloads](https://img.shields.io/github/downloads/ranchen749-oss/LiuMusic-Android/total?label=downloads&color=2ea44f)](https://github.com/ranchen749-oss/LiuMusic-Android/releases)
+[![Release](https://img.shields.io/github/v/release/ranchen749-oss/LiuMusic-Android?display_name=release&label=release&color=ff2d55)](https://github.com/ranchen749-oss/LiuMusic-Android/releases/latest)
+[![Last Commit](https://img.shields.io/github/last-commit/ranchen749-oss/LiuMusic-Android/main?label=last%20commit&color=007aff)](https://github.com/ranchen749-oss/LiuMusic-Android/commits/main)
 [![License](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
 
 <p align="center">
@@ -24,7 +24,7 @@
 
 `0.6.5` 新增签名热更新通道：文案覆盖与受限 QuickJS 脚本都随已签名的云控 payload 下发，文案与小逻辑修复不再需要发 APK；未授权云控、验签失败或脚本失败/超时时一律回落内置行为。
 
-- 下载与完整更新日志：[GitHub Releases](https://github.com/liuguanyi/LiuMusic-Android/releases/tag/0.6.5)
+- 下载与完整更新日志：[GitHub Releases](https://github.com/ranchen749-oss/LiuMusic-Android/releases/tag/0.6.5)
 - 详细版本记录：[CHANGELOG.md](CHANGELOG.md)
 - 本次版本说明：[CHANGELOG.md](CHANGELOG.md)
 
@@ -184,7 +184,7 @@ Liquid Glass 在 Android 上使用 Kyant0 `AndroidLiquidGlass` 的原生 Backdro
 1. 克隆仓库：
 
    ```bash
-   git clone https://github.com/liuguanyi/LiuMusic-Android.git
+   git clone https://github.com/ranchen749-oss/LiuMusic-Android.git
    cd LiuMusic-Android
    ```
 
