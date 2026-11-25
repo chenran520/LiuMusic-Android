@@ -1358,4 +1358,9 @@
     <string name="autosync_dict_confirm">辞書をダウンロードしますか？ 通信約 24 MB、空き容量約 102 MB が必要です。</string>
     <string name="autosync_dict_ready">日本語モデルと辞書が準備完了</string>
     <string name="autosync_dict_license">辞書には %1$s 修正 BSD ライセンスが含まれます。</string>
+    <string name="splash_tagline">Android ネイティブ音楽クライアント</string>
+    <string name="splash_author_label">開 発 者</string>
+    <string name="splash_author_name">柳貫一</string>
+    <string name="splash_author_email">2676911574@qq.com</string>
+    <string name="splash_version">v%1$s</string>
 </resources>

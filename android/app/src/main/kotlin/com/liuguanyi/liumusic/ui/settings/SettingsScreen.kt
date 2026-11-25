@@ -125,7 +125,6 @@ import com.liuguanyi.liumusic.core.update.LiuMusicDevCommit
 import com.liuguanyi.liumusic.core.update.LiuMusicUpdateClient
 import com.liuguanyi.liumusic.playback.PlaybackCommands
 import com.liuguanyi.liumusic.playback.LiuMusicAutoMixFadeCurve
-import com.liuguanyi.liumusic.playback.LiuMusicAutoMixDiagnostics
 import com.liuguanyi.liumusic.playback.LiuMusicAutoMixFallback
 import com.liuguanyi.liumusic.playback.LiuMusicAutoMixMode
 import com.liuguanyi.liumusic.playback.LiuMusicAutoMixSettings
@@ -201,7 +200,6 @@ enum class SettingsRoute(val title: String) {
     About("关于 LiuMusic"),
     Legal("隐私政策与免责声明"),
     Privacy("隐私与本地算法"),
-    Developer("开发者选项"),
     Experimental("测试功能尝鲜"),
 }
 
@@ -236,7 +234,6 @@ private val SettingsSections = listOf(
         SettingsItem(SettingsRoute.RemoteConfig, "签名配置状态、平台熔断声明与本地缓存", "⌁", "远程 配置 云控 签名 熔断 兼容 GitHub"),
         SettingsItem(SettingsRoute.About, "版本、项目主页与开源信息", "ⓘ", "GitHub 更新 开源 许可"),
         SettingsItem(SettingsRoute.Legal, "查看隐私政策、免责声明与同意版本", "▤", "隐私 政策 免责声明 法律 条款 数据"),
-        SettingsItem(SettingsRoute.Developer, "播放器诊断与迁移状态", "⌘", "BeatNet 节拍 调试 日志"),
         SettingsItem(SettingsRoute.Experimental, "预览尚未稳定的新功能", "✦", "实验 测试 歌词 强绑定"),
     )),
 )
@@ -481,7 +478,6 @@ internal fun SettingsDetailScreen(route: SettingsRoute, source: MusicSource, ses
                     SettingsRoute.About -> AboutSettings(context)
                     SettingsRoute.Legal -> LegalSettings(context)
                     SettingsRoute.Privacy -> PrivacySettings(context)
-                    SettingsRoute.Developer -> DeveloperSettings()
                     SettingsRoute.Experimental -> ExperimentalSettings(context, source, session)
                     else -> {}
                 }
@@ -2895,7 +2891,7 @@ private fun AboutSettings(context: android.content.Context) {
             Column(Modifier.padding(18.dp)) {
             Text("LiuMusic Android", fontSize = 22.sp, fontWeight = FontWeight.Bold)
             Text(
-                "版本 ${BuildConfig.VERSION_NAME} · LiuMusic 的 Android 原生迁移版。",
+                "版本 ${BuildConfig.VERSION_NAME} · 柳乐 LiuMusic，由柳贯一独立开发。",
                 modifier = Modifier
                     .padding(top = 7.dp)
                     .clickable {
@@ -3175,37 +3171,6 @@ private fun AboutSettings(context: android.content.Context) {
     }
 }
 
-@Composable
-private fun DeveloperSettings() {
-    val context = LocalContext.current
-    var diagnosticsVisible by remember {
-        mutableStateOf(BuildConfig.DEBUG && LiuMusicSettingsPreferences.boolean(context, "developer_automix_diagnostics", false))
-    }
-    var diagnostics by remember { mutableStateOf(LiuMusicAutoMixDiagnostics.snapshot()) }
-    if (BuildConfig.DEBUG) {
-        SettingsToggleRow(
-            context = context,
-            title = stringResource(R.string.settings_dev_overlay),
-            key = "developer_performance_overlay",
-            default = false,
-            note = stringResource(R.string.settings_dev_overlay_note),
-        )
-        SettingsExternalToggleRow(
-            title = stringResource(R.string.settings_dev_automix),
-            value = diagnosticsVisible,
-            note = stringResource(R.string.settings_dev_automix_note),
-        ) {
-            diagnosticsVisible = it
-            LiuMusicSettingsPreferences.setBoolean(context, "developer_automix_diagnostics", it)
-        }
-        if (diagnosticsVisible) {
-            Spacer(Modifier.height(8.dp))
-            SettingsActionButton(stringResource(R.string.settings_dev_refresh)) { diagnostics = LiuMusicAutoMixDiagnostics.snapshot() }
-            Spacer(Modifier.height(10.dp))
-        }
-    }
-    Spacer(Modifier.height(10.dp))
-}
 
 private val LocalSettingsGroupedRows = staticCompositionLocalOf { false }
 internal val LocalSettingsGroupRowIndex = staticCompositionLocalOf { mutableIntStateOf(0) }

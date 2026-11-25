@@ -41,6 +41,7 @@ import com.liuguanyi.liumusic.platform.xiaomi.HyperOsFocusBridge
 import com.liuguanyi.liumusic.ui.player.LiuMusicListenTogetherInviteActivity
 import com.liuguanyi.liumusic.ui.LiuMusicApp
 import com.liuguanyi.liumusic.ui.settings.LiuMusicSettingsPreferences
+import com.liuguanyi.liumusic.ui.splash.LiuMusicSplashScreen
 import com.liuguanyi.liumusic.ui.theme.LiuMusicTheme
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.CompletableDeferred
@@ -115,18 +116,16 @@ class MainActivity : ComponentActivity() {
         setContent {
             LiuMusicTheme {
                 var splashVisible by remember { mutableStateOf(coldStart && !returnFromBackground) }
+                // 开屏页淡出后从组合中移除，避免它在首页之上继续参与每帧绘制。
+                var splashMounted by remember { mutableStateOf(splashVisible) }
                 val pageAlpha by animateFloatAsState(
                     targetValue = if (splashVisible) 0f else 1f,
                     animationSpec = tween(350),
                     label = "liumusic-start-page",
                 )
-                val splashAlpha by animateFloatAsState(
-                    targetValue = if (splashVisible) 1f else 0f,
-                    animationSpec = tween(350),
-                    label = "liumusic-start-icon",
-                )
                 LaunchedEffect(coldStart, returnFromBackground) {
-                    if (coldStart && !returnFromBackground) delay(1_000L)
+                    // 开屏页要读完图标 + 应用名 + 作者信息，比原来的纯图标闪屏多停留一会儿。
+                    if (coldStart && !returnFromBackground) delay(SPLASH_HOLD_MS)
                     splashVisible = false
                 }
                 Box(Modifier.fillMaxSize()) {
@@ -138,15 +137,10 @@ class MainActivity : ComponentActivity() {
                             playbackConnectionEnabled = playbackConnectionEnabled,
                         )
                     }
-                    if (splashAlpha > 0f) {
-                        Image(
-                            painter = painterResource(R.drawable.ic_launcher_foreground),
-                            contentDescription = null,
-                            modifier = Modifier
-                                .align(Alignment.Center)
-                                .size(104.dp)
-                                .clip(RoundedCornerShape(24.dp))
-                                .alpha(splashAlpha),
+                    if (splashMounted) {
+                        LiuMusicSplashScreen(
+                            visible = splashVisible,
+                            onFinished = { splashMounted = false },
                         )
                     }
                 }
@@ -304,5 +298,8 @@ class MainActivity : ComponentActivity() {
             "com.liuguanyi.liumusic.action.OPEN_NOW_PLAYING"
         /** Cold starts within this window of the last backgrounding are treated as returns, not fresh launches. */
         private const val RETURN_FROM_BACKGROUND_WINDOW_MS = 15L * 60L * 1000L
+
+    // 开屏页停留时长：够看清图标、应用名与作者信息，又不至于让老用户等得烦。
+    private const val SPLASH_HOLD_MS = 1_600L
     }
 }
