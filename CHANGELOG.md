@@ -2,6 +2,17 @@
 
 [English](../README.md)
 
+## 0.6.9 — 2026-11-26
+
+- 版本号升级为 `0.6.9`，`versionCode 27`。
+- **修复液态玻璃效果消失（release 包专属问题）**：`proguard-rules.pro` 缺少对
+  `io.github.kyant0:backdrop` 的 keep 规则，R8 在 release 构建里把玻璃库的类名与
+  成员名重命名、并剥离了 AGSL RuntimeShader 相关常量字符串，导致只有 release 包里
+  玻璃退化成实心背景（debug 正常）。现补充 `-keep class com.kyant.backdrop.**`
+  等规则，实测 APK 内 `com/kyant/backdrop` 从 0 处恢复为 70 处。
+- **修复开屏页卸载时机**：开屏层含无限循环动画，淡出后必须硬性卸载，
+  否则会持续驱动重组、抢走渲染管线，进而影响液态玻璃渲染。
+- 强制更新门槛保持 `MIN_SUPPORTED_VERSION = 0.6.8`：0.6.8 及以下都会收到升级提示。
 ## 0.6.8 — 2026-11-26
 
 - 版本号升级为 `0.6.8`，`versionCode 26`。

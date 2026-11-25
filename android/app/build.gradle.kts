@@ -46,8 +46,8 @@ android {
         applicationId = "com.liuguanyi.liumusic.android"
         minSdk = 24
         targetSdk = 37
-        versionCode = 26
-        versionName = "0.6.8"
+        versionCode = 27
+        versionName = "0.6.9"
         testInstrumentationRunner = "com.liuguanyi.liumusic.core.autosync.AutoSyncDeviceRunner"
         // One APK for real phones: both ARM architectures stay in the package,
         // so 32-bit devices keep working exactly as before. Only the

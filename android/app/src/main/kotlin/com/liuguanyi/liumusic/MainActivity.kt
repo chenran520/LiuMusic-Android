@@ -127,7 +127,7 @@ class MainActivity : ComponentActivity() {
                 // 开屏页必须在首帧就存在。用 remember 的初值决定，而不是等 LaunchedEffect
                 // 之后再挂载 —— 否则冷启动那几百毫秒里首页会先露出来，开屏页像是「没出现」。
                 var splashVisible by remember { mutableStateOf(coldStart && !returnFromBackground) }
-                var splashMounted by remember { mutableStateOf(coldStart && !returnFromBackground) }
+                var splashMounted by remember { mutableStateOf(splashVisible) }
                 val pageAlpha by animateFloatAsState(
                     targetValue = if (splashVisible) 0f else 1f,
                     animationSpec = tween(350),
@@ -139,6 +139,16 @@ class MainActivity : ComponentActivity() {
                         delay(SPLASH_HOLD_MS)
                     }
                     splashVisible = false
+                    // ⚠ 必须无条件卸载，不能只依赖淡出动画的 finishedListener。
+                    //
+                    //   开屏层里带 rememberInfiniteTransition（作者姓名呼吸动效）。
+                    //   只要它还留在组合里，就会每帧驱动重组；这层又盖在整个 LiuMusicApp
+                    //   之上，会持续抢走渲染管线 —— 直接后果是液态玻璃的 RenderEffect
+                    //   失效，玻璃退化成一块实心背景色（也就是「液体玻璃效果没了」）。
+                    //
+                    //   所以这里等淡出动画（350ms）走完再硬性卸载，多给 100ms 余量。
+                    delay(SPLASH_FADE_OUT_MS + 100L)
+                    splashMounted = false
                 }
                 Box(Modifier.fillMaxSize()) {
                     Box(Modifier.fillMaxSize().alpha(pageAlpha)) {
@@ -149,6 +159,9 @@ class MainActivity : ComponentActivity() {
                             playbackConnectionEnabled = playbackConnectionEnabled,
                         )
                     }
+                    // ⚠ 开屏层只在「确实要显示」时挂载。
+                    //   splashMounted 为 false 时这里什么都不画 —— 一个常驻的空 Box
+                    //   会让上层多一层绘制节点，液态玻璃的 layerBackdrop 采样会跟着变脏。
                     if (splashMounted) {
                         LiuMusicSplashScreen(
                             visible = splashVisible,
@@ -313,5 +326,8 @@ class MainActivity : ComponentActivity() {
 
     // 开屏页停留时长：够看清图标、应用名与作者信息，又不至于让老用户等得烦。
     private const val SPLASH_HOLD_MS = 1_600L
+
+    // 开屏页淡出动画时长，卸载时机按它计算。
+    private const val SPLASH_FADE_OUT_MS = 350L
     }
 }

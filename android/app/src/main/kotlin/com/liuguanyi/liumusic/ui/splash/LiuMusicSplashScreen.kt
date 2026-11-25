@@ -100,16 +100,25 @@ fun LiuMusicSplashScreen(
     )
 
     // 作者姓名的极轻微呼吸缩放（0.985 ↔ 1.0），让这张卡片成为画面焦点。
+    //
+    // ⚠ 关键：呼吸动画必须「只在开屏页真的可见时」驱动。
+    //   rememberInfiniteTransition 一旦进入组合就会每帧重组 —— 哪怕 alpha 已经淡到 0。
+    //   开屏页淡出后若外层还短暂保留它，这个无限动画会让整个 App 持续重组，
+    //   抢走渲染管线，**液态玻璃的 RenderEffect 会因此失效**（玻璃变成实心）。
+    //   这里用 visible 作为动画的 target 门控：不可见时目标值恒为 1f，动画自然停住。
+    val breathActive = visible && detailVisible
     val breathe = rememberInfiniteTransition(label = "liumusic-splash-breathe")
-    val breathScale by breathe.animateFloat(
-        initialValue = 0.985f,
-        targetValue = 1f,
+    val breathRaw by breathe.animateFloat(
+        initialValue = 1f,
+        targetValue = 1.006f,
         animationSpec = infiniteRepeatable(
             animation = tween(1700, easing = FastOutSlowInEasing),
             repeatMode = RepeatMode.Reverse,
         ),
         label = "liumusic-splash-breath",
     )
+    // 不可见时把缩放钉死在 1f，画面不变，也不再有可见的动画变化。
+    val breathScale = if (breathActive) breathRaw else 1f
 
     if (alpha <= 0.01f) return
 
