@@ -1358,6 +1358,8 @@
     <string name="autosync_dict_ready">日文模型與詞典齊備</string>
     <string name="autosync_dict_license">詞典內含 %1$s 修改版 BSD 授權條款。</string>
     <string name="splash_tagline">Android 原生音樂客戶端</string>
+    <string name="splash_author_avatar">柳</string>
+    <string name="splash_copyright">© 2026 柳貫一</string>
     <string name="splash_author_label">開 發 者</string>
     <string name="splash_author_name">柳貫一</string>
     <string name="splash_author_email">2676911574@qq.com</string>
