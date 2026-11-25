@@ -1274,7 +1274,7 @@ fun LiuMusicApp(
                     onOpenProject = {
                         runCatching {
                             hostContext.startActivity(
-                                Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/ranchen749-oss/LiuMusic-Android")),
+                                Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/chenran520/LiuMusic-Android")),
                             )
                         }
                     },

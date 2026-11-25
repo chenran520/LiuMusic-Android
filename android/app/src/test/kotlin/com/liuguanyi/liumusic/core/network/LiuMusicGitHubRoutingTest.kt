@@ -8,7 +8,7 @@ class LiuMusicGitHubRoutingTest {
 
     @Test
     fun githubApiCanUseConfiguredRoutes() {
-        val api = "https://api.github.com/repos/ranchen749-oss/LiuMusic-Android/releases"
+        val api = "https://api.github.com/repos/chenran520/LiuMusic-Android/releases"
         assertEquals(api, LiuMusicGitHubRouting.routedUrlFor(LiuMusicGitHubSource.GitHubDoh, api))
         assertEquals("https://ghfast.top/$api", LiuMusicGitHubRouting.routedUrlFor(LiuMusicGitHubSource.GhFast, api))
     }

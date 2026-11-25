@@ -11,10 +11,10 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/ranchen749-oss/LiuMusic-Android/releases"><img src="https://img.shields.io/github/downloads/ranchen749-oss/LiuMusic-Android/total?label=downloads&color=2ea44f" alt="Downloads"></a>
-  <a href="https://github.com/ranchen749-oss/LiuMusic-Android/releases/latest"><img src="https://img.shields.io/github/v/release/ranchen749-oss/LiuMusic-Android?display_name=release&label=release&color=ff2d55" alt="Release"></a>
-  <a href="https://github.com/ranchen749-oss/LiuMusic-Android/actions"><img src="https://img.shields.io/github/actions/workflow/status/ranchen749-oss/LiuMusic-Android/ci.yml?branch=main&label=CI" alt="CI"></a>
-  <a href="https://github.com/ranchen749-oss/LiuMusic-Android/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-GPLv3-2563eb" alt="GPLv3"></a>
+  <a href="https://github.com/chenran520/LiuMusic-Android/releases"><img src="https://img.shields.io/github/downloads/chenran520/LiuMusic-Android/total?label=downloads&color=2ea44f" alt="Downloads"></a>
+  <a href="https://github.com/chenran520/LiuMusic-Android/releases/latest"><img src="https://img.shields.io/github/v/release/chenran520/LiuMusic-Android?display_name=release&label=release&color=ff2d55" alt="Release"></a>
+  <a href="https://github.com/chenran520/LiuMusic-Android/actions"><img src="https://img.shields.io/github/actions/workflow/status/chenran520/LiuMusic-Android/ci.yml?branch=main&label=CI" alt="CI"></a>
+  <a href="https://github.com/chenran520/LiuMusic-Android/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-GPLv3-2563eb" alt="GPLv3"></a>
 </p>
 
 <p align="center">
@@ -22,7 +22,7 @@
   ·
   <a href="README.zh-Hans.md">完整中文说明</a>
   ·
-  <a href="https://github.com/ranchen749-oss/LiuMusic-Android/releases">下载 Release</a>
+  <a href="https://github.com/chenran520/LiuMusic-Android/releases">下载 Release</a>
 </p>
 
 > LiuMusic（柳乐）是柳贯一（LiuGuanYi）独立开发的 Android 原生音乐客户端。它不是 WebView 套壳，也不是网易云音乐官方客户端，而是使用 Kotlin、Jetpack Compose 与 AndroidX Media3 重新构建的一套完整音乐体验。
@@ -184,10 +184,10 @@ LiuMusic（柳乐）由柳贯一（LiuGuanYi）设计与开发，同时使用或
 
 ## 相关链接
 
-- [GitHub Releases](https://github.com/ranchen749-oss/LiuMusic-Android/releases)
+- [GitHub Releases](https://github.com/chenran520/LiuMusic-Android/releases)
 - [更新日志](CHANGELOG.md)
 - [完整中文说明](README.zh-Hans.md)
 - [English README](README.en.md)
-- [问题反馈](https://github.com/ranchen749-oss/LiuMusic-Android/issues)
+- [问题反馈](https://github.com/chenran520/LiuMusic-Android/issues)
 
 LiuMusic Android 仍在持续迭代。接口会变化，系统会变化，音乐应用也应该继续进化。

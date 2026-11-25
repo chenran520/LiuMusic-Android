@@ -58,10 +58,10 @@ class LiuMusicUpdateClientTest {
     fun releasesSelectHighestSupportedAndroidVersion() {
         val release = client.parseReleases(
             """[
-                {"tag_name":"unrelated","draft":false,"html_url":"https://github.com/ranchen749-oss/LiuMusic-Android/releases/tag/unrelated"},
-                {"tag_name":"android-0.5.0-Beta","name":"Beta","body":"notes","draft":false,"prerelease":true,"published_at":"2026-08-26T00:00:00Z","html_url":"https://github.com/ranchen749-oss/LiuMusic-Android/releases/tag/android-0.5.0-Beta","assets":[{"name":"LiuMusic.apk","browser_download_url":"https://github.com/ranchen749-oss/LiuMusic-Android/releases/download/android-0.5.0-Beta/LiuMusic.apk"}]},
-                {"tag_name":"0.4.9","draft":false,"published_at":"2026-08-27T00:00:00Z","html_url":"https://github.com/ranchen749-oss/LiuMusic-Android/releases/tag/0.4.9","assets":[]},
-                {"tag_name":"android-9.0.0","draft":true,"html_url":"https://github.com/ranchen749-oss/LiuMusic-Android/releases/tag/android-9.0.0"}
+                {"tag_name":"unrelated","draft":false,"html_url":"https://github.com/chenran520/LiuMusic-Android/releases/tag/unrelated"},
+                {"tag_name":"android-0.5.0-Beta","name":"Beta","body":"notes","draft":false,"prerelease":true,"published_at":"2026-08-26T00:00:00Z","html_url":"https://github.com/chenran520/LiuMusic-Android/releases/tag/android-0.5.0-Beta","assets":[{"name":"LiuMusic.apk","browser_download_url":"https://github.com/chenran520/LiuMusic-Android/releases/download/android-0.5.0-Beta/LiuMusic.apk"}]},
+                {"tag_name":"0.4.9","draft":false,"published_at":"2026-08-27T00:00:00Z","html_url":"https://github.com/chenran520/LiuMusic-Android/releases/tag/0.4.9","assets":[]},
+                {"tag_name":"android-9.0.0","draft":true,"html_url":"https://github.com/chenran520/LiuMusic-Android/releases/tag/android-9.0.0"}
             ]""".trimIndent(),
         )
 
@@ -74,7 +74,7 @@ class LiuMusicUpdateClientTest {
     fun releasesAcceptEverySupportedTagShape() {
         listOf("android-0.5.0-Beta", "0.5.0-Beta", "0.5.0", "android-0.5.0").forEach { tag ->
             val release = client.parseReleases(
-                """[{"tag_name":"$tag","draft":false,"html_url":"https://github.com/ranchen749-oss/LiuMusic-Android/releases/tag/$tag","assets":[]}]""",
+                """[{"tag_name":"$tag","draft":false,"html_url":"https://github.com/chenran520/LiuMusic-Android/releases/tag/$tag","assets":[]}]""",
             )
             assertEquals(tag, release?.version)
         }
@@ -87,8 +87,8 @@ class LiuMusicUpdateClientTest {
                 "version":"0.5.0",
                 "name":"LiuMusic 0.5.0",
                 "notes":"notes",
-                "pageUrl":"https://github.com/ranchen749-oss/LiuMusic-Android/releases/tag/0.5.0",
-                "apkUrl":"https://github.com/ranchen749-oss/LiuMusic-Android/releases/download/0.5.0/LiuMusic.apk",
+                "pageUrl":"https://github.com/chenran520/LiuMusic-Android/releases/tag/0.5.0",
+                "apkUrl":"https://github.com/chenran520/LiuMusic-Android/releases/download/0.5.0/LiuMusic.apk",
                 "apkName":"LiuMusic.apk",
                 "publishedAt":"2026-08-25T00:00:00Z"
             }""".trimIndent(),

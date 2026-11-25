@@ -147,11 +147,11 @@ class LiuMusicUpdateClient(
         val value = JSONObject(body)
         val version = value.getString("version").trim()
         val pageUrl = value.getString("pageUrl").trim()
-        require(version.isNotBlank() && pageUrl.startsWith("https://github.com/ranchen749-oss/LiuMusic-Android/releases/")) {
+        require(version.isNotBlank() && pageUrl.startsWith("https://github.com/chenran520/LiuMusic-Android/releases/")) {
             "更新清单格式错误"
         }
         val apkUrl = value.optString("apkUrl").trim().takeIf(String::isNotBlank)
-        require(apkUrl == null || apkUrl.startsWith("https://github.com/ranchen749-oss/LiuMusic-Android/releases/download/")) {
+        require(apkUrl == null || apkUrl.startsWith("https://github.com/chenran520/LiuMusic-Android/releases/download/")) {
             "更新下载地址不受信任"
         }
         return LiuMusicRelease(
@@ -255,12 +255,12 @@ class LiuMusicUpdateClient(
     }
 
     private companion object {
-        const val GitHubReleasesUrl = "https://api.github.com/repos/ranchen749-oss/LiuMusic-Android/releases?per_page=100"
-        const val GitHubBranchUrl = "https://api.github.com/repos/ranchen749-oss/LiuMusic-Android/branches/main"
+        const val GitHubReleasesUrl = "https://api.github.com/repos/chenran520/LiuMusic-Android/releases?per_page=100"
+        const val GitHubBranchUrl = "https://api.github.com/repos/chenran520/LiuMusic-Android/branches/main"
         const val DevBuildPageUrl =
-            "https://github.com/ranchen749-oss/LiuMusic-Android/releases/download/dev-latest/LiuMusic-Android-debug.apk"
-        const val ReleasePagePrefix = "https://github.com/ranchen749-oss/LiuMusic-Android/releases/"
-        const val ReleaseDownloadPrefix = "https://github.com/ranchen749-oss/LiuMusic-Android/releases/download/"
+            "https://github.com/chenran520/LiuMusic-Android/releases/download/dev-latest/LiuMusic-Android-debug.apk"
+        const val ReleasePagePrefix = "https://github.com/chenran520/LiuMusic-Android/releases/"
+        const val ReleaseDownloadPrefix = "https://github.com/chenran520/LiuMusic-Android/releases/download/"
         val VERSION_PATTERN = Regex(
             pattern = "^(?:android-)?v?(\\d+)\\.(\\d+)\\.(\\d+)(?:-[A-Za-z0-9][A-Za-z0-9.-]*)?$",
             option = RegexOption.IGNORE_CASE,

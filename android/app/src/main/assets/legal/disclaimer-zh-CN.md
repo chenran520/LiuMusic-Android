@@ -54,4 +54,4 @@ LiuMusic 源代码按项目仓库所载开源许可证提供。修改、编译�
 
 ## 十、联系我们
 
-如需报告侵权、错误内容、安全问题或其他争议，请通过 LiuMusic 项目主页的 GitHub Issues 联系维护者：https://github.com/ranchen749-oss/LiuMusic-Android/issues
+如需报告侵权、错误内容、安全问题或其他争议，请通过 LiuMusic 项目主页的 GitHub Issues 联系维护者：https://github.com/chenran520/LiuMusic-Android/issues

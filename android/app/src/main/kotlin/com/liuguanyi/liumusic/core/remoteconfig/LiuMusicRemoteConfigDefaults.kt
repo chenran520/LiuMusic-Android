@@ -29,7 +29,7 @@ object LiuMusicRemoteConfigDefaults {
     )
 
     /** Only files under this prefix may be referenced by the updater. */
-    const val PinnedReleasePrefix = "https://github.com/ranchen749-oss/LiuMusic-Android/releases/download/"
+    const val PinnedReleasePrefix = "https://github.com/chenran520/LiuMusic-Android/releases/download/"
 
     val Rules = LiuMusicRemoteRules(
         lyricMatchOriginalToleranceMs = 2_000L,

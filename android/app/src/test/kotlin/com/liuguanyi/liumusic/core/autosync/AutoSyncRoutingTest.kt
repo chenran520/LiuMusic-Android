@@ -7,7 +7,7 @@ class AutoSyncRoutingTest {
     @Test fun modelReleaseIsPinnedToBetaFour() {
         assertEquals("android-models-v0.1.0-beta.4", AutoSyncModelRepository.RELEASE_TAG)
         assertEquals(
-            "https://github.com/ranchen749-oss/LiuMusic-AutoSync/releases/download/android-models-v0.1.0-beta.4/",
+            "https://github.com/chenran520/LiuMusic-AutoSync/releases/download/android-models-v0.1.0-beta.4/",
             AutoSyncModelRepository.RELEASE_PREFIX,
         )
         // Pinned hash of the published beta.4 index (14 093 bytes).

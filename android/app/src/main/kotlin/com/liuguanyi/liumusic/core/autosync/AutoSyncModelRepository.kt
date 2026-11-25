@@ -444,7 +444,7 @@ internal class AutoSyncModelRepository(
          */
         const val RELEASE_TAG = "android-models-v0.1.0-beta.4"
         const val RELEASE_PREFIX =
-            "https://github.com/ranchen749-oss/LiuMusic-AutoSync/releases/download/android-models-v0.1.0-beta.4/"
+            "https://github.com/chenran520/LiuMusic-AutoSync/releases/download/android-models-v0.1.0-beta.4/"
         const val INDEX_URL = RELEASE_PREFIX + "android-models.json"
 
         /**

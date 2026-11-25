@@ -201,7 +201,7 @@ class LiuMusicRemoteConfigModelsTest {
                     "fromApkSha256": "$good",
                     "toVersion": "0.6.6",
                     "apkSha256": "$good",
-                    "patchUrl": "https://github.com/ranchen749-oss/LiuMusic-Android/releases/download/0.6.6/LiuMusic-0.6.5-0.6.6.patch",
+                    "patchUrl": "https://github.com/chenran520/LiuMusic-Android/releases/download/0.6.6/LiuMusic-0.6.5-0.6.6.patch",
                     "patchSha256": "$good",
                     "patchBytes": 123456
                   },
