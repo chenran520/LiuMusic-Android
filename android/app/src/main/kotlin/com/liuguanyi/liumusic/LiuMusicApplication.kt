@@ -63,6 +63,27 @@ object LiuMusicAppVisibility : Application.ActivityLifecycleCallbacks {
         foregroundState.value = startedActivities > 0
         if (startedActivities == 0) recordBackgrounded(activity)
     }
+    /**
+     * 本次冷启动是否发生在「同一个进程会话」里。
+     *
+     * 用于开屏页判定：Activity 因旋屏、返回栈重建而重建时不该重放开屏页，
+     * 但进程死了再起来（真正的冷启动、覆盖安装后首次打开）必须重新播放。
+     */
+    @Volatile
+    private var processSessionStamp: Long = System.currentTimeMillis()
+
+    @Volatile
+    private var activitySessionStamp: Long = -1L
+
+    /** 由 MainActivity.onCreate 调用。 */
+    fun markActivityCreated() {
+        activitySessionStamp = processSessionStamp
+    }
+
+    /** 当前 Activity 是否属于进程启动后的第一拨 —— 是则说明进程没死过。 */
+    fun isSameProcessSession(context: Context): Boolean =
+        activitySessionStamp == processSessionStamp && processSessionStamp != 0L
+
 
     /** Wall-clock ms of the most recent moment the app dropped fully to background.
      *  Persisted to disk so a process-death cold start can still recognise itself as a return. */

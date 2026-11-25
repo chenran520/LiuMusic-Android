@@ -792,11 +792,15 @@ private fun LiuMusicHomeLayout(
                 }
                 item {
                     Text(
-                        text = stringResource(R.string.home_greeting),
+                        // 按真实本地时间给出问候语，不再是写死的「下午好」。
+                        text = rememberTimeAwareGreeting(),
                         modifier = Modifier.padding(horizontal = 20.dp),
                         style = LiuMusicTypography.headline,
                         color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.58f),
                     )
+                }
+                item {
+                    HomeAuthorCard(modifier = Modifier.padding(horizontal = 20.dp))
                 }
                 blocks.forEach { block ->
                     when (block) {
@@ -1875,6 +1879,84 @@ private fun EmptyOrLoading(loading: Boolean, error: String?) {
         item {
             if (loading) CircularProgressIndicator(color = Accent)
             else Text(error ?: stringResource(R.string.liumusic_state_empty), color = MaterialTheme.colorScheme.onBackground.copy(alpha = .5f))
+        }
+    }
+}
+
+/**
+ * 首页「关于作者」板块。
+ *
+ * 放在问候语正下方：这是用户每次打开 App 第一眼扫过的区域，
+ * 作者信息出现在这里比藏在设置里更符合「让作者更明显」的诉求。
+ *
+ * 视觉上刻意做得比其它内容块「轻」：不用玻璃材质、不抢歌曲卡片的注意力，
+ * 但用品牌渐变底 + 头像圆环保证一眼能认出是人名而非功能入口。
+ */
+@Composable
+private fun HomeAuthorCard(modifier: Modifier = Modifier) {
+    val role = stringResource(R.string.home_author_role)
+    val name = stringResource(R.string.home_author_name)
+    val email = stringResource(R.string.home_author_email)
+    Box(
+        modifier = modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(20.dp))
+            .background(
+                Brush.linearGradient(
+                    listOf(Color(0x14C2185B), Color(0x08C2185B)),
+                ),
+            )
+            .padding(horizontal = 16.dp, vertical = 14.dp),
+    ) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Box(
+                modifier = Modifier
+                    .size(42.dp)
+                    .clip(CircleShape)
+                    .background(
+                        Brush.linearGradient(
+                            listOf(Color(0xFFEC407A), Color(0xFFC2185B)),
+                        ),
+                    ),
+                contentAlignment = Alignment.Center,
+            ) {
+                Text(
+                    text = name.take(1),
+                    fontSize = 19.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White,
+                )
+            }
+            Spacer(Modifier.width(12.dp))
+            Column(Modifier.weight(1f)) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text(
+                        text = name,
+                        fontSize = 15.sp,
+                        fontWeight = FontWeight.SemiBold,
+                        color = Color(0xFFC2185B),
+                    )
+                    Spacer(Modifier.width(7.dp))
+                    Box(
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(50))
+                            .background(Color(0x1FC2185B))
+                            .padding(horizontal = 7.dp, vertical = 2.dp),
+                    ) {
+                        Text(
+                            text = role,
+                            fontSize = 10.sp,
+                            color = Color(0xFFAD1457),
+                        )
+                    }
+                }
+                Spacer(Modifier.height(3.dp))
+                Text(
+                    text = email,
+                    fontSize = 11.5.sp,
+                    color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.55f),
+                )
+            }
         }
     }
 }

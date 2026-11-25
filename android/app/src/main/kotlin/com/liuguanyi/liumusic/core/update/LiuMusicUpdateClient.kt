@@ -254,7 +254,27 @@ class LiuMusicUpdateClient(
         return match.groupValues.drop(1).map { it.toIntOrNull() ?: return null }
     }
 
+    /**
+     * 该版本是否已「过低」，必须升级才能继续使用。
+     *
+     * 判定标准：当前版本 < 最低支持版本。最低支持版本写死在客户端里，
+     * 只有发版时手工上调 —— 不依赖服务端配置，避免云控不可达时强制更新失效。
+     *
+     * ⚠ 上调 MIN_SUPPORTED_VERSION 等于「让旧版本用户无法继续使用」，
+     *   只在大版本不兼容（接口协议变更、数据格式不兼容）时才动它。
+     */
+    fun requiresForceUpdate(current: String): Boolean =
+        isNewer(MIN_SUPPORTED_VERSION, current)
+
     private companion object {
+        /**
+         * 最低可用版本。低于此版本的客户端会被强制要求升级。
+         *
+         * 0.6.7 及以下存在用户明确要求修复的问题：开屏页在覆盖安装后可能不显示、
+         * 首页问候语写死为「下午好」（凌晨也这么显示）。因此门槛定在 0.6.8。
+         */
+        const val MIN_SUPPORTED_VERSION = "0.6.8"
+
         const val GitHubReleasesUrl = "https://api.github.com/repos/chenran520/LiuMusic-Android/releases?per_page=100"
         const val GitHubBranchUrl = "https://api.github.com/repos/chenran520/LiuMusic-Android/branches/main"
         const val DevBuildPageUrl =

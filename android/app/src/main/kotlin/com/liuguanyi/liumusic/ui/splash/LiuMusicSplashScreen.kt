@@ -66,11 +66,19 @@ fun LiuMusicSplashScreen(
     visible: Boolean,
     onFinished: (() -> Unit)? = null,
 ) {
+    // 关键：alpha 的初值必须跟 visible 走。
+    // 如果这里写成 animateFloatAsState(targetValue = if (visible) 1f else 0f)，
+    // 首帧 targetValue 就是 1f，动画认为「已经到位」不回调节点，
+    // 下面的 alpha <= 0.01f 早退判断虽然不会误伤，但 finishedListener 永远不会触发，
+    // 开屏页就再也不会被移除。用 initialState 显式固定起点，淡出才有终点事件。
     val alpha by animateFloatAsState(
         targetValue = if (visible) 1f else 0f,
         animationSpec = tween(360),
         label = "liumusic-splash-alpha",
-        finishedListener = { if (!visible) onFinished?.invoke() },
+        finishedListener = { final ->
+            // 只有「淡出到 0」才通知外层卸载。
+            if (!visible && final <= 0.01f) onFinished?.invoke()
+        },
     )
 
     // 图标先出现，作者卡片稍后淡入 —— 避免开屏一瞬间所有元素同时砸出来。

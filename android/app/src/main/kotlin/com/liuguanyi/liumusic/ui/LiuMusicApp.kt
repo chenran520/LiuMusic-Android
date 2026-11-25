@@ -1311,8 +1311,32 @@ fun LiuMusicApp(
                 },
             )
         }
+        // 强制更新：当前版本低于 MIN_SUPPORTED_VERSION 时弹出不可关闭的升级窗口。
+        // 优先级最高，盖过首次引导与云控同意 —— 用户必须先升级才能继续用。
+        val forceUpdateRequired = availableUpdate?.let { release ->
+            LiuMusicUpdateClient(context).requiresForceUpdate(BuildConfig.VERSION_NAME) &&
+                LiuMusicUpdateClient(context).isNewer(release.version, BuildConfig.VERSION_NAME)
+        } == true
+        availableUpdate?.takeIf { forceUpdateRequired }?.let { release ->
+            // 强制更新不受任何引导流程限制：只要版本过低，就必须先升级。
+            LiuMusicAppDialog(
+                title = stringResource(R.string.app_update_force_title),
+                message = stringResource(R.string.app_update_force_body, release.version),
+                dismissLabel = stringResource(R.string.app_update_force_exit),
+                confirmLabel = stringResource(R.string.app_update_download),
+                // 不允许点外部或返回键关闭：onDismiss 只提供「退出应用」这一条路。
+                onDismiss = { (context as? Activity)?.finishAffinity() },
+                onConfirm = {
+                    playerScope.launch {
+                        val target = runCatching { LiuMusicUpdateClient(context).downloadUrl(release) }.getOrNull()
+                            ?: release.pageUrl
+                        runCatching { context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(target))) }
+                    }
+                },
+            )
+        }
         availableUpdate?.takeIf {
-            onboardingPage < 0 && !cloudControlChoicePending && pendingRemoteNotice == null
+            !forceUpdateRequired && onboardingPage < 0 && !cloudControlChoicePending && pendingRemoteNotice == null
         }?.let { release ->
             LiuMusicAppDialog(
                 title = stringResource(R.string.app_update_found, release.version),

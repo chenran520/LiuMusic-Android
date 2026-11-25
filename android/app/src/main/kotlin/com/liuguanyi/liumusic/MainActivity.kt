@@ -106,8 +106,17 @@ class MainActivity : ComponentActivity() {
         //   卡顿的真凶不是动画叠加，而是旋转时无触摸事件 ⇒ 高刷窗口过期（见
         //   LiuMusicFrameRateHost.onActivityConfigurationChanged 的 markActive）。
         val coldStart = savedInstanceState == null
-        val returnFromBackground = coldStart &&
-            System.currentTimeMillis() - LiuMusicAppVisibility.lastBackgroundedAtMs(this) <= RETURN_FROM_BACKGROUND_WINDOW_MS
+        // ⚠ 开屏页只在「进程真正的冷启动」时显示。
+        //
+        // 原实现用「上次退到后台至今是否在 15 分钟内」来跳过开屏页，目的是让用户切出去
+        // 接个电话再回来时不必重看一遍。但这个判断有个致命副作用：覆盖安装后
+        // SharedPreferences 是保留的，如果装完立刻打开、而上一次退到后台还在 15 分钟内，
+        // returnFromBackground 会误判为 true，开屏页直接被跳过 —— 表现为「开屏页没了」。
+        //
+        // 改为按进程实例判定：Application 每次冷启动都是新进程，用它记录的启动时间戳，
+        // 只有在同一进程内（Activity 重建、旋屏）才跳过，跨进程一律显示。
+        val returnFromBackground = coldStart && LiuMusicAppVisibility.isSameProcessSession(this)
+        LiuMusicAppVisibility.markActivityCreated()
         enableEdgeToEdge()
         consumePlaybackIntent(intent)
         LiuMusicSettingsPreferences.initializeCritical(this)
@@ -115,17 +124,20 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             LiuMusicTheme {
+                // 开屏页必须在首帧就存在。用 remember 的初值决定，而不是等 LaunchedEffect
+                // 之后再挂载 —— 否则冷启动那几百毫秒里首页会先露出来，开屏页像是「没出现」。
                 var splashVisible by remember { mutableStateOf(coldStart && !returnFromBackground) }
-                // 开屏页淡出后从组合中移除，避免它在首页之上继续参与每帧绘制。
-                var splashMounted by remember { mutableStateOf(splashVisible) }
+                var splashMounted by remember { mutableStateOf(coldStart && !returnFromBackground) }
                 val pageAlpha by animateFloatAsState(
                     targetValue = if (splashVisible) 0f else 1f,
                     animationSpec = tween(350),
                     label = "liumusic-start-page",
                 )
                 LaunchedEffect(coldStart, returnFromBackground) {
-                    // 开屏页要读完图标 + 应用名 + 作者信息，比原来的纯图标闪屏多停留一会儿。
-                    if (coldStart && !returnFromBackground) delay(SPLASH_HOLD_MS)
+                    if (coldStart && !returnFromBackground) {
+                        // 开屏页要读完图标 + 应用名 + 作者信息。
+                        delay(SPLASH_HOLD_MS)
+                    }
                     splashVisible = false
                 }
                 Box(Modifier.fillMaxSize()) {

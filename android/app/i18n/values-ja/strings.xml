@@ -11,6 +11,15 @@
     <string name="tab_services">音楽サービス</string>
     <string name="tab_search">検索</string>
     <string name="tab_messages">メッセージ</string>
+    <string name="home_greeting_morning">おはようございます</string>
+    <string name="home_greeting_noon">こんにちは</string>
+    <string name="home_greeting_afternoon">こんにちは</string>
+    <string name="home_greeting_evening">こんばんは</string>
+    <string name="home_greeting_night">夜更かしですね</string>
+    <string name="home_author_title">作者について</string>
+    <string name="home_author_name">柳貫一</string>
+    <string name="home_author_role">個人開発者</string>
+    <string name="home_author_email">2676911574@qq.com</string>
     <string name="home_greeting">こんにちは</string>
     <string name="action_back">戻る</string>
     <string name="action_close">閉じる</string>
@@ -1365,4 +1374,7 @@
     <string name="splash_author_name">柳貫一</string>
     <string name="splash_author_email">2676911574@qq.com</string>
     <string name="splash_version">v%1$s</string>
+    <string name="app_update_force_title">アップデートが必要です</string>
+    <string name="app_update_force_body">このバージョンはサポートされていません。%1$s にアップデートしてください。</string>
+    <string name="app_update_force_exit">アプリを終了</string>
 </resources>
